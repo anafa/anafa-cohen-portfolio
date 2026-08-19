@@ -361,21 +361,28 @@ section {
   white-space: nowrap;
 }
 
-/* Project cards: grid of individual write-ups per role, one card per
-   named project rather than one gallery per company. A role with a
-   single project spans the full grid width (.project-grid--single). */
+/* Project cards: flex-wrap row of individual write-ups per role, one card
+   per named project rather than one gallery per company. Closed cards
+   have a bounded width (don't stretch to fill the row) so a role with a
+   single project — Pixellot — reads as one normal-sized card, not one
+   oversized full-width card. Opening a card grows it to the full row
+   width to host the detail panel (wrapping any other cards in that row
+   onto new lines), then it shrinks back to its normal width on close. */
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
-}
-.project-grid--single .project-card {
-  grid-column: 1 / -1;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
+  flex: 0 1 18.75rem;
+  max-width: 21.25rem;
+}
+.project-card.is-open {
+  flex: 1 1 100%;
+  max-width: none;
 }
 
 .project-toggle {
@@ -513,24 +520,25 @@ section {
 }
 
 /* ---- Skills ---- */
-.skills-group {
-  margin-bottom: 2rem;
-}
-.skills-group:last-child {
-  margin-bottom: 0;
+/* Compact grid so all 5 groups sit on one row at desktop widths instead
+   of stacking vertically — was a single stacked column. */
+.skills-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.375rem, 1fr));
+  gap: 1.5rem 1.25rem;
 }
 .skills-group-label {
   font-family: var(--font-display);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-slate);
-  margin: 0 0 0.9rem;
+  margin: 0 0 0.625rem;
 }
 .skills-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -539,8 +547,8 @@ section {
   border: 1px solid var(--color-amber);
   color: var(--color-amber);
   font-family: var(--font-mono);
-  font-size: 0.78rem;
-  padding: 0.35rem 0.7rem;
+  font-size: 0.72rem;
+  padding: 0.25rem 0.5625rem;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   white-space: nowrap;

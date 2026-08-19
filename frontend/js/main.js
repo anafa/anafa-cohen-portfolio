@@ -76,6 +76,7 @@ function buildLogo(role) {
 function closeAllProjectPanels() {
   document.querySelectorAll(".project-expanded.is-open").forEach((panel) => {
     panel.classList.remove("is-open");
+    panel.parentElement?.classList.remove("is-open");
     const toggleBtn = panel.previousElementSibling;
     if (toggleBtn) {
       toggleBtn.setAttribute("aria-expanded", "false");
@@ -167,6 +168,7 @@ function buildProjectCard(role, project, panelId) {
 
   const setOpen = (isOpen) => {
     panel.classList.toggle("is-open", isOpen);
+    card.classList.toggle("is-open", isOpen);
     btn.setAttribute("aria-expanded", String(isOpen));
     toggleLabel.textContent = isOpen ? "Close ↑" : "View project →";
   };
@@ -213,9 +215,6 @@ function renderProjects(cv) {
 
     const grid = document.createElement("div");
     grid.className = "project-grid";
-    if (role.projects.length === 1) {
-      grid.classList.add("project-grid--single");
-    }
 
     role.projects.forEach((project, projectIndex) => {
       const panelId = `project-panel-${roleIndex}-${projectIndex}`;

@@ -290,6 +290,15 @@ Re-tested: diffed served `styles.css` (`?v=6`) against source — byte-identical
 
 Re-tested: validated every field the new JS references exists with the right shape across all 4 roles/9 projects; confirmed no leftover references anywhere in the codebase to any of the deleted classes/functions/HTML ids (`role-list`, `role-card`, `gallery-*`, `renderExperience`, `buildGallery`, etc.); HTTP-level check confirms `#projects`/`#role-groups` render and all assets (including the new versioned CSS/JS) return 200. **Not verified this session**: in-browser visual/interaction confirmation (does the accordion actually expand/collapse correctly, does it look right) — no browser tool available, code review and static field-validation only.
 
+**Follow-up revision from an updated design export:** user provided a second version of the same design handoff zip with two changes from the first: (1) the Skills/"Core Capabilities" section moves from right after About to after Projects, right before Contact, with a more compact grid layout (all 5 category groups on one row at desktop widths instead of stacked); (2) project cards get a fixed/bounded width when closed (`flex: 0 1 300px`, not stretched to fill the grid row) so a single-project role (Pixellot) reads as one normal-sized card instead of one oversized full-width card — replacing the earlier "span full width if role has only 1 project" rule with something better: *any* card grows to full row width only when *opened* (via `.is-open` on the card itself, not just the panel), regardless of how many projects its role has.
+- Diffed both design export versions directly (README + `.dc.html`) to identify exactly what changed rather than re-reading the whole spec from scratch.
+- `frontend/index.html`: moved the `#core-capabilities` section block to after `#projects`.
+- `frontend/css/styles.css`: `.skills-groups` changed from stacked to `repeat(auto-fit, minmax(9.375rem,1fr))` grid with smaller label/tag sizing; `.project-grid` changed from `display:grid` to `display:flex; flex-wrap:wrap`, `.project-card` given a bounded `flex: 0 1 18.75rem; max-width: 21.25rem`, `.project-card.is-open` grows to `flex: 1 1 100%`; removed the now-obsolete `.project-grid--single` rule.
+- `frontend/js/main.js`: removed the `role.projects.length === 1` special-casing in `renderProjects()`; `setOpen()` in `buildProjectCard()` now toggles `.is-open` on the card itself in addition to the panel; `closeAllProjectPanels()` updated to clear `.is-open` from both.
+- Cache-busting bumped to `styles.css?v=9`, `main.js?v=10`.
+
+Re-tested: diffed served CSS/JS (with versioned query strings) against source — byte-identical; confirmed new section order (`about` → `projects` → `core-capabilities` → `contact`) in the served HTML; grepped for leftover references to the removed `.project-grid--single` class — none in code, only in docs (updated). **Not verified this session**: in-browser visual/interaction confirmation — no browser tool available.
+
 ---
 
 ### Part 10 — Deployment
