@@ -32,58 +32,140 @@
       "title": "Senior Computer Vision & Deep Learning Engineer",
       "startDate": "2024",
       "endDate": "2025",
-      "description": [
-        "Designed and implemented a closed-vocabulary object detection module based on a Co-DETR pre-trained model, including full benchmarking and evaluation pipeline.",
-        "Built a comprehensive benchmarking framework to evaluate model performance and guide architectural and threshold-level decisions.",
-        "Enhanced an end-to-end License Plate Recognition (LPR) pipeline, including detection, OCR, and clustering, through systematic threshold tuning and ablation studies.",
-        "Improved speaker recognition capabilities by refining speaker diarization, generating representative embeddings, and enabling efficient large-scale embedding retrieval.",
-        "Worked closely with product and engineering teams to integrate models into production systems."
-      ],
       "logo": {
         "file": "airis_logo.png",
         "placeholder": false
       },
-      "gallery": []
+      "projects": [
+        {
+          "title": "Closed-Vocabulary Object Detection Pipeline",
+          "blurb": "A closed-vocabulary object detection module built on Co-DETR, with a benchmarking framework to guide model and threshold decisions.",
+          "description": "Designed and implemented a closed-vocabulary object detection module based on a Co-DETR pre-trained model, including a full benchmarking and evaluation pipeline. Built a comprehensive benchmarking framework to evaluate model performance and guide architectural and threshold-level decisions.",
+          "bullets": [
+            "Co-DETR-based object detection module for a closed vocabulary of target classes",
+            "End-to-end benchmarking and evaluation pipeline built alongside the model",
+            "Benchmarking framework used to guide architectural and threshold-level decisions"
+          ],
+          "image": {
+            "file": null,
+            "alt": null,
+            "placeholder": true
+          },
+          "gallery": []
+        },
+        {
+          "title": "License Plate Recognition Pipeline",
+          "blurb": "End-to-end license plate detection, OCR, and clustering pipeline, improved through systematic threshold tuning and ablation studies.",
+          "description": "Enhanced an end-to-end License Plate Recognition (LPR) pipeline — covering detection, OCR, and clustering — through systematic threshold tuning and ablation studies.",
+          "bullets": [
+            "End-to-end pipeline: detection, OCR, and clustering stages",
+            "Systematic threshold tuning across the pipeline",
+            "Ablation studies to isolate what improved performance"
+          ],
+          "image": {
+            "file": null,
+            "alt": null,
+            "placeholder": true
+          },
+          "gallery": []
+        },
+        {
+          "title": "Speaker Recognition & Diarization",
+          "blurb": "Improved speaker recognition through refined diarization and efficient large-scale embedding retrieval.",
+          "description": "Improved speaker recognition capabilities by refining speaker diarization, generating representative embeddings, and enabling efficient large-scale embedding retrieval.",
+          "bullets": [
+            "Refined speaker diarization",
+            "Generated representative speaker embeddings",
+            "Enabled efficient retrieval across large-scale embedding sets"
+          ],
+          "image": {
+            "file": null,
+            "alt": null,
+            "placeholder": true
+          },
+          "gallery": []
+        }
+      ]
     },
     {
       "company": "Taranis",
       "title": "Computer Vision & Deep Learning Engineer",
       "startDate": "2023",
       "endDate": "2024",
-      "description": [
-        "Developed object detection and image classification models for large-scale drone imagery in agricultural environments.",
-        "Led the development of an end-to-end pipeline for early-stage detection of field crops such as sugar beet and cotton.",
-        "Managed a proof-of-concept for wide-field imagery to improve weed detection, including data analysis, annotation guidelines, and evaluation of multiple annotation strategies.",
-        "Designed and trained CNN-based crop classification models, handling the full lifecycle from data preparation and training to production deployment."
-      ],
       "logo": {
         "file": "taranis_logo.png",
         "placeholder": false
       },
-      "gallery": [
+      "projects": [
         {
-          "file": "taranis2.png",
-          "alt": "Drone image of crop rows with bounding boxes marking individually detected seedlings"
+          "title": "Crop Detection",
+          "blurb": "End-to-end pipeline for early-stage detection of field crops like sugar beet and cotton from drone imagery.",
+          "description": "Developed object detection models for large-scale drone imagery in agricultural environments, and led the development of an end-to-end pipeline for early-stage detection of field crops such as sugar beet and cotton.",
+          "bullets": [
+            "End-to-end pipeline for early-stage crop detection",
+            "Target crops included sugar beet and cotton",
+            "Built for large-scale drone imagery"
+          ],
+          "image": {
+            "file": "taranis2.png",
+            "alt": "Drone image of crop rows with bounding boxes marking individually detected seedlings",
+            "placeholder": false
+          },
+          "gallery": [
+            {
+              "file": "taranis4.png",
+              "alt": "Diagram of the YOLO-NAS object detection model architecture",
+              "placeholder": false
+            },
+            {
+              "file": "taranis5.png",
+              "alt": "Close-up drone image of early-stage crop seedlings with detection boxes marking each plant",
+              "placeholder": false
+            },
+            {
+              "file": "taranis6.png",
+              "alt": "Drone image of bare soil planting rows with detection boxes marking barely-emerged seedlings",
+              "placeholder": false
+            }
+          ]
         },
         {
-          "file": "taranis3.png",
-          "alt": "Field-level heatmap overlay showing variability across a farm field boundary"
+          "title": "Weed Detection in Wide-Field Images",
+          "blurb": "Proof-of-concept for improving weed detection in wide-field drone imagery, including annotation-strategy evaluation.",
+          "description": "Managed a proof-of-concept for wide-field imagery to improve weed detection, including data analysis, annotation guidelines, and evaluation of multiple annotation strategies.",
+          "bullets": [
+            "Proof-of-concept for weed detection in wide-field imagery",
+            "Defined data analysis and annotation guidelines",
+            "Evaluated multiple annotation strategies"
+          ],
+          "image": {
+            "file": "taranis7.png",
+            "alt": "Aerial view of mature crop rows with a detection box highlighting a weed patch",
+            "placeholder": false
+          },
+          "gallery": [
+            {
+              "file": "taranis3.png",
+              "alt": "Field-level heatmap overlay showing variability across a farm field boundary",
+              "placeholder": false
+            }
+          ]
         },
         {
-          "file": "taranis4.png",
-          "alt": "Diagram of the YOLO-NAS object detection model architecture"
-        },
-        {
-          "file": "taranis5.png",
-          "alt": "Close-up drone image of early-stage crop seedlings with detection boxes marking each plant"
-        },
-        {
-          "file": "taranis6.png",
-          "alt": "Drone image of bare soil planting rows with detection boxes marking barely-emerged seedlings"
-        },
-        {
-          "file": "taranis7.png",
-          "alt": "Aerial view of mature crop rows with a detection box highlighting a weed patch"
+          "title": "Crop Classification",
+          "blurb": "CNN-based crop classification models taken from data preparation through to production deployment.",
+          "description": "Designed and trained CNN-based crop classification models for large-scale drone imagery, handling the full lifecycle from data preparation and training to production deployment.",
+          "bullets": [
+            "CNN-based crop classification models",
+            "Full lifecycle: data preparation, training, deployment",
+            "Built for large-scale drone imagery"
+          ],
+          "image": {
+            "file": null,
+            "alt": null,
+            "placeholder": true
+          },
+          "gallery": []
         }
       ]
     },
@@ -92,35 +174,47 @@
       "title": "Computer Vision & Deep Learning Engineer",
       "startDate": "2022",
       "endDate": "2022",
-      "description": [
-        "Developed real-time computer vision algorithms for automatic sports broadcast production.",
-        "Improved game state detection in American Football videos by analyzing failure modes of existing algorithms and incorporating motion-based and spatial metrics.",
-        "Conducted research and rapid prototyping in Python and deployed optimized solutions in C++ for real-time performance."
-      ],
       "logo": {
         "file": "pixellot_logo.png",
         "placeholder": false
       },
-      "gallery": [
+      "projects": [
         {
-          "file": "pixellot2.png",
-          "alt": "Player and ball detection overlay on a soccer broadcast camera feed, with bounding boxes and framing calibration lines"
-        },
-        {
-          "file": "pixellot5.png",
-          "alt": "Split-screen comparison of player-tracking bounding boxes and game-state overlay across two broadcast camera frames"
-        },
-        {
-          "file": "pixellot6.png",
-          "alt": "Pixellot automatic broadcast production interface showing a tracked match view and camera control panel"
-        },
-        {
-          "file": "pixellot7.png",
-          "alt": "Panoramic match camera view above a top-down team formation and player-position analysis"
-        },
-        {
-          "file": "pixellot10.png",
-          "alt": "Close-up player-tracking debug view with bounding boxes, IDs, and velocity data on an American football field"
+          "title": "Automatic Production Optimization for American Football Broadcasts",
+          "blurb": "Real-time computer vision improvements to game state detection for automatic American Football broadcast production.",
+          "description": "Developed real-time computer vision algorithms for automatic sports broadcast production, with a focus on improving game state detection in American Football videos — analyzing failure modes of existing algorithms and incorporating motion-based and spatial metrics. Prototyped in Python and deployed optimized solutions in C++ for real-time performance.",
+          "bullets": [
+            "Improved game state detection via failure-mode analysis of existing algorithms",
+            "Incorporated motion-based and spatial metrics into detection",
+            "Prototyped in Python, deployed in C++ for real-time performance"
+          ],
+          "image": {
+            "file": "pixellot10.png",
+            "alt": "Close-up player-tracking debug view with bounding boxes, IDs, and velocity data on an American football field",
+            "placeholder": false
+          },
+          "gallery": [
+            {
+              "file": "pixellot2.png",
+              "alt": "Player and ball detection overlay on a soccer broadcast camera feed, with bounding boxes and framing calibration lines",
+              "placeholder": false
+            },
+            {
+              "file": "pixellot5.png",
+              "alt": "Split-screen comparison of player-tracking bounding boxes and game-state overlay across two broadcast camera frames",
+              "placeholder": false
+            },
+            {
+              "file": "pixellot6.png",
+              "alt": "Pixellot automatic broadcast production interface showing a tracked match view and camera control panel",
+              "placeholder": false
+            },
+            {
+              "file": "pixellot7.png",
+              "alt": "Panoramic match camera view above a top-down team formation and player-position analysis",
+              "placeholder": false
+            }
+          ]
         }
       ]
     },
@@ -129,43 +223,72 @@
       "title": "Computer Vision & Deep Learning Engineer",
       "startDate": "2019",
       "endDate": "2021",
-      "description": [
-        "Developed deep learning and classical image processing algorithms for radar (SAR) and optical satellite imagery in agricultural applications.",
-        "Led semantic segmentation project for crop-type classification using satellite data.",
-        "Applied machine learning techniques, classical image processing, and statistical methods to satellite imagery for flood detection and crop-type classification."
-      ],
       "logo": {
         "file": "planetwatchers_logo.png",
         "placeholder": false
       },
-      "gallery": [
+      "projects": [
         {
-          "file": "planetwatchers1.png",
-          "alt": "Aerial view of agricultural fields showing distinct crop parcels and access roads"
+          "title": "Crop-Type Semantic Segmentation",
+          "blurb": "Semantic segmentation model for crop-type classification using SAR and optical satellite imagery.",
+          "description": "Led a semantic segmentation project for crop-type classification using satellite data, applying deep learning and classical image processing techniques to both radar (SAR) and optical satellite imagery in agricultural applications.",
+          "bullets": [
+            "Semantic segmentation for crop-type classification",
+            "Combined deep learning with classical image processing",
+            "Worked across both SAR and optical satellite imagery"
+          ],
+          "image": {
+            "file": "planetwatchers1.png",
+            "alt": "Aerial view of agricultural fields showing distinct crop parcels and access roads",
+            "placeholder": false
+          },
+          "gallery": [
+            {
+              "file": "planetwatchers2.png",
+              "alt": "Aerial view of a harvester working a field, between green and golden crop rows",
+              "placeholder": false
+            },
+            {
+              "file": "planetwatchers3.png",
+              "alt": "Land-cover classification map over an agricultural region, color-coded by crop and land type",
+              "placeholder": false
+            },
+            {
+              "file": "planetwatchers4.png",
+              "alt": "Diagram of the U-Net encoder-decoder architecture used for satellite image classification",
+              "placeholder": false
+            },
+            {
+              "file": "planetwatchers5.png",
+              "alt": "Pipeline diagram for satellite data processing, feature optimization, and crop-type mapping using Sentinel-1 and Sentinel-2 imagery",
+              "placeholder": false
+            },
+            {
+              "file": "planetwatchers6.png",
+              "alt": "Comparison of sample satellite imagery, ground truth labels, and model predictions for crop-type segmentation",
+              "placeholder": false
+            },
+            {
+              "file": "planetwatchers7.png",
+              "alt": "Benchmark comparison of multiple segmentation model architectures (FCN, SegNet, TCN, SegFormer, ConvLSTM, U-Net) on crop-type classification",
+              "placeholder": false
+            }
+          ]
         },
         {
-          "file": "planetwatchers2.png",
-          "alt": "Aerial view of a harvester working a field, between green and golden crop rows"
-        },
-        {
-          "file": "planetwatchers3.png",
-          "alt": "Land-cover classification map over an agricultural region, color-coded by crop and land type"
-        },
-        {
-          "file": "planetwatchers4.png",
-          "alt": "Diagram of the U-Net encoder-decoder architecture used for satellite image classification"
-        },
-        {
-          "file": "planetwatchers5.png",
-          "alt": "Pipeline diagram for satellite data processing, feature optimization, and crop-type mapping using Sentinel-1 and Sentinel-2 imagery"
-        },
-        {
-          "file": "planetwatchers6.png",
-          "alt": "Comparison of sample satellite imagery, ground truth labels, and model predictions for crop-type segmentation"
-        },
-        {
-          "file": "planetwatchers7.png",
-          "alt": "Benchmark comparison of multiple segmentation model architectures (FCN, SegNet, TCN, SegFormer, ConvLSTM, U-Net) on crop-type classification"
+          "title": "Flood Detection from Satellite Imagery",
+          "blurb": "Flood detection from satellite imagery using a combination of ML, classical image processing, and statistical methods.",
+          "description": "Applied machine learning techniques, classical image processing, and statistical methods to satellite imagery for flood detection.",
+          "bullets": [
+            "Combined ML, classical image processing, and statistical methods",
+            "Applied to satellite imagery for flood detection"
+          ],
+          "image": {
+            "file": null,
+            "alt": null,
+            "placeholder": true
+          },
+          "gallery": []
         }
       ]
     }

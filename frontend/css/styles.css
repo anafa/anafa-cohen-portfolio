@@ -284,22 +284,35 @@ section {
   }
 }
 
-/* ---- Experience ---- */
-.role-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* ---- Projects ---- */
+.projects-hint {
+  color: var(--color-slate);
+  font-size: 0.95rem;
+  margin: 0 0 2.5rem;
 }
-.role-card {
+
+.role-groups {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 2.5rem 0;
-  border-top: 1px solid var(--color-ink-raised);
+  gap: 2.75rem;
 }
-.role-card:first-child {
-  border-top: none;
-  padding-top: 0;
+
+.role-group-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-ink-raised);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.role-group-heading {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
 }
 
 /* Real logos come from the company's own brand assets, some on dark
@@ -331,28 +344,12 @@ section {
   padding: 0.35rem;
 }
 
-.role-content {
-  min-width: 0;
-  flex: 1 1 auto;
-}
-.role-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: 0.9rem;
-  row-gap: 0.3rem;
-  margin-bottom: 1rem;
-}
-.role-title {
-  font-size: 1.2rem;
-  flex-basis: 100%;
-}
 .role-company {
   margin: 0;
   font-family: var(--font-display);
   color: var(--color-amber);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -361,45 +358,55 @@ section {
   font-family: var(--font-mono);
   color: var(--color-teal);
   font-size: 0.85rem;
+  white-space: nowrap;
 }
 
-.role-bullets {
-  margin: 0;
-  padding-left: 1.1rem;
+/* Project cards: grid of individual write-ups per role, one card per
+   named project rather than one gallery per company. A role with a
+   single project spans the full grid width (.project-grid--single). */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+  gap: 1.5rem;
+}
+.project-grid--single .project-card {
+  grid-column: 1 / -1;
+}
+
+.project-card {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  max-width: 42rem;
 }
 
-/* Project gallery: browsable per-role, deliberately large — no corner
-   brackets here (see frontend/AGENTS.md restraint note), just a dashed
-   placeholder frame consistent with the rest of the site's photo slots. */
-.role-gallery {
-  position: relative;
-  width: 100%;
-}
-.gallery-viewport {
-  position: relative;
-  overflow: hidden;
-  border: 1px dashed var(--color-slate);
-  aspect-ratio: 4 / 3;
-}
-.gallery-track {
+.project-toggle {
   display: flex;
-  height: 100%;
-  transition: transform 0.3s ease;
+  flex-direction: column;
+  gap: 0.875rem;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
-.gallery-slide {
-  flex: 0 0 100%;
-  height: 100%;
+.project-toggle:hover .project-toggle-label,
+.project-toggle:focus-visible .project-toggle-label {
+  color: var(--color-ivory);
 }
-.gallery-image {
+
+.project-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.project-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.gallery-placeholder {
+.project-image .photo-placeholder {
   width: 100%;
   height: 100%;
   display: flex;
@@ -407,77 +414,102 @@ section {
   justify-content: center;
   text-align: center;
   padding: 1rem;
+  border: 1px dashed var(--color-slate);
   color: var(--color-slate);
   font-family: var(--font-display);
   font-size: 0.85rem;
   letter-spacing: 0.02em;
 }
 
-.gallery-prev,
-.gallery-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.69rem;
-  height: 1.69rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-ink);
+.project-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+.project-blurb {
+  margin: 0;
   color: var(--color-ivory);
-  border: 1px solid var(--color-slate);
-  border-radius: 50%;
+  font-size: 0.96rem;
+}
+.project-toggle-label {
+  margin: 0.75rem 0 0;
   font-family: var(--font-display);
-  font-size: 0.83rem;
+  color: var(--color-amber);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: color 0.15s ease-out;
+}
+
+/* Expanded write-up panel: a fixed CSS class toggle (.is-open), not the
+   `hidden` attribute — sidesteps any cascade-order dependency entirely by
+   construction (see frontend/AGENTS.md on the placeholder-visibility saga). */
+.project-expanded {
+  display: none;
+  margin-top: 1.25rem;
+  background: var(--color-ink-raised);
+  padding: clamp(1.25rem, 4vw, 1.6rem);
+  position: relative;
+}
+.project-expanded.is-open {
+  display: block;
+}
+.project-close {
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--color-slate);
+  background: none;
+  color: var(--color-ivory);
+  font-size: 1rem;
   line-height: 1;
   cursor: pointer;
 }
-.gallery-prev { left: 0.45rem; }
-.gallery-next { right: 0.45rem; }
-.gallery-prev:disabled,
-.gallery-next:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-.gallery-prev:hover:not(:disabled),
-.gallery-next:hover:not(:disabled) {
+.project-close:hover,
+.project-close:focus-visible {
   border-color: var(--color-amber);
   color: var(--color-amber);
 }
-
-.gallery-dots {
+.project-description {
+  max-width: 44rem;
+  margin: 0 0 1rem;
+}
+.project-bullets {
+  margin: 0 0 1.375rem;
+  padding-left: 1.2rem;
+  max-width: 44rem;
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.project-more-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.75rem, 1fr));
+  gap: 0.75rem;
+}
+.project-more-image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.project-more-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-more-image .photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 0.375rem;
-  margin-top: 0.5625rem;
-}
-.gallery-dot {
-  width: 6px;
-  height: 6px;
-  padding: 0;
-  border-radius: 50%;
-  border: 1px solid var(--color-slate);
-  background: transparent;
-  cursor: pointer;
-}
-.gallery-dot.is-active {
-  background: var(--color-amber);
-  border-color: var(--color-amber);
-}
-
-@media (min-width: 768px) {
-  .role-card {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 2.5rem;
-  }
-  .role-content {
-    flex: 1 1 56%;
-  }
-  .role-gallery {
-    flex: 1 1 34%;
-    min-width: 19.5rem;
-  }
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px dashed var(--color-slate);
+  color: var(--color-slate);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
 }
 
 /* ---- Skills ---- */
