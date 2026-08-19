@@ -18,7 +18,10 @@
   },
   "freelance": {
     "available": true,
-    "statement": "Open to freelance and consulting work in computer vision and applied machine learning — model development, benchmarking, and getting production ML pipelines shipped, particularly for teams working with visual or sensor data (imagery, video, audio)."
+    "statement": [
+      "I'm a machine learning engineer who enjoys turning messy, real-world data into working algorithms.",
+      "With 7+ years of experience in computer vision and applied machine learning, I work on problems involving imagery, video, audio, and other sensor data — from the first experiment to a solution that actually works in production."
+    ]
   },
   "headshot": {
     "photo": "my_profile_picture_2.jpeg",

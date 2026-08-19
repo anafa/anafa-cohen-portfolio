@@ -273,7 +273,12 @@ function renderSkills(cv) {
 }
 
 function renderFreelance(cv) {
-  document.getElementById("freelance-statement").textContent = cv.freelance.statement;
+  const container = document.getElementById("freelance-statement");
+  for (const paragraph of cv.freelance.statement) {
+    const p = document.createElement("p");
+    p.textContent = paragraph;
+    container.append(p);
+  }
 }
 
 function renderContact(cv) {

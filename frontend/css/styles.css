@@ -525,6 +525,12 @@ section {
   font-size: clamp(1.05rem, 2.2vw, 1.25rem);
   line-height: 1.5;
 }
+.freelance-intro p {
+  margin: 0;
+}
+.freelance-intro p + p {
+  margin-top: 0.75rem;
+}
 
 /* ---- Contact ---- */
 .contact-lead {
