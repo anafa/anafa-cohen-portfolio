@@ -2,7 +2,7 @@
   "name": "Anafa Cohen",
   "title": "Senior Computer Vision & Machine Learning Engineer",
   "tagline": "Senior Computer Vision & Machine Learning Engineer",
-  "bio": "I'm a Senior Computer Vision & ML Engineer with 7 years of experience designing and deploying production-grade AI systems in agriculture, sports analytics, satellite imagery, and speech processing. I take ownership of end-to-end pipelines — from data strategy and modeling to benchmarking, optimization, and deployment. I bring a strong background in applied mathematics and physics.",
+  "bio": "With 7+ years of experience in computer vision and applied machine learning, I work on problems involving imagery, video, audio, and other sensor data — from the first experiment to a solution that actually works in production.",
   "highlights": {
     "yearsExperience": "7",
     "domains": [
@@ -19,8 +19,7 @@
   "freelance": {
     "available": true,
     "statement": [
-      "I'm a machine learning engineer who enjoys turning messy, real-world data into working algorithms.",
-      "With 7+ years of experience in computer vision and applied machine learning, I work on problems involving imagery, video, audio, and other sensor data — from the first experiment to a solution that actually works in production."
+      "I'm a machine learning engineer who enjoys turning messy, real-world data into working algorithms."
     ]
   },
   "headshot": {

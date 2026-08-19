@@ -26,9 +26,8 @@ function renderAbout(cv) {
   document.getElementById("about-bio").textContent = cv.bio;
 
   const rows = [
-    { label: "Experience", value: `${cv.highlights.yearsExperience} Years` },
-    { label: "Focus Areas", value: cv.highlights.domains.join(" · ") },
     { label: "Education", value: cv.education[0].degree },
+    { label: "Focus Areas", value: cv.highlights.domains.join(" · ") },
   ];
 
   const readout = document.getElementById("about-readout");
