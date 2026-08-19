@@ -1,0 +1,536 @@
+/* ---- Design tokens: "Night Field" (docs/design.md) ---- */
+:root {
+  --color-ink: #14181A;
+  --color-ink-raised: #1D2224;
+  --color-ivory: #EFEAE0;
+  --color-amber: #E8A33D;
+  --color-teal: #4F9D8C;
+  --color-slate: #8B9296;
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --content-max: 68rem;
+  --space-section: clamp(2.75rem, 6vw, 5rem);
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+/* Several placeholder elements below use `display: flex` for centering,
+   which (being an author rule) silently overrides the browser's default
+   `[hidden] { display: none }` — so `element.hidden = true` in JS wasn't
+   actually hiding them once a real image loaded. This wins regardless of
+   what any later rule sets display to. */
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background-color: var(--color-ink);
+  /* faint scan-grid — nods to the satellite/radar/tracking-frame imagery
+     her work is built on, kept subtle enough to read as texture not noise */
+  background-image:
+    linear-gradient(rgba(239, 234, 224, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 234, 224, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--color-ivory);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0;
+  line-height: 1.1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Accessibility helpers ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-amber);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  padding: 0.75rem 1.25rem;
+  z-index: 100;
+  border-radius: 0 0 4px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}
+
+.noscript-notice {
+  max-width: var(--content-max);
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  color: var(--color-slate);
+}
+
+/* ---- Layout shell ---- */
+.site-header {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+section {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--space-section) 1.5rem;
+}
+
+/* ---- Bounding-box corner motif ----
+   Deliberately just four open corner brackets, never a full border loop —
+   true to how detection frames actually look, and reserved for two uses:
+   the hero frame (large scale) and section headings (small scale). Not
+   applied to every photo/card, so it stays a signature, not decoration. */
+.corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 0 solid var(--color-amber);
+  pointer-events: none;
+}
+.corner-tl { top: -10px; left: -10px; border-top-width: 2px; border-left-width: 2px; }
+.corner-tr { top: -10px; right: -10px; border-top-width: 2px; border-right-width: 2px; }
+.corner-bl { bottom: -10px; left: -10px; border-bottom-width: 2px; border-left-width: 2px; }
+.corner-br { bottom: -10px; right: -10px; border-bottom-width: 2px; border-right-width: 2px; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .section-heading .corner {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  .section-heading.is-revealed .corner {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .hero-frame .corner {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: corner-in 0.5s ease-out 0.1s forwards;
+  }
+  .hero-frame .corner-tr { animation-delay: 0.2s; }
+  .hero-frame .corner-bl { animation-delay: 0.2s; }
+  .hero-frame .corner-br { animation-delay: 0.3s; }
+}
+
+@keyframes corner-in {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ---- Hero ---- */
+.hero {
+  padding-top: clamp(2.5rem, 8vh, 4.5rem);
+}
+
+.hero-frame {
+  position: relative;
+  background: var(--color-ink-raised);
+  padding: clamp(2.25rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3rem);
+}
+.hero-frame .corner {
+  width: 40px;
+  height: 40px;
+}
+.hero-frame .corner-tl { top: -3px; left: -3px; border-top-width: 3px; border-left-width: 3px; }
+.hero-frame .corner-tr { top: -3px; right: -3px; border-top-width: 3px; border-right-width: 3px; }
+.hero-frame .corner-bl { bottom: -3px; left: -3px; border-bottom-width: 3px; border-left-width: 3px; }
+.hero-frame .corner-br { bottom: -3px; right: -3px; border-bottom-width: 3px; border-right-width: 3px; }
+
+.hero-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+.hero-name {
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  font-weight: 700;
+}
+.hero-tagline {
+  font-family: var(--font-display);
+  color: var(--color-teal);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  margin: 0.6rem 0 1.75rem;
+}
+.cta {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: var(--color-amber);
+  color: var(--color-ink);
+  text-decoration: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: 2px;
+  transition: transform 0.15s ease-out;
+}
+.cta:hover, .cta:focus-visible {
+  transform: translateY(-2px);
+}
+
+.hero-photo {
+  flex-shrink: 0;
+  width: clamp(182px, 39vw, 247px);
+  aspect-ratio: 1 / 1;
+}
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed var(--color-slate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-slate);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+@media (min-width: 768px) {
+  .hero-inner {
+    flex-direction: row-reverse;
+    text-align: left;
+    gap: 3rem;
+  }
+  .hero-text { max-width: 32rem; }
+}
+
+/* ---- About ---- */
+.section-heading {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  padding: 0.4rem 0.9rem;
+  margin-bottom: 2rem;
+}
+.about-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+.bio {
+  font-size: 1.15rem;
+  max-width: 42rem;
+}
+
+.readout {
+  margin: 0;
+  border-top: 1px solid var(--color-slate);
+}
+.readout-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--color-slate);
+}
+.readout-row dt {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+  flex-shrink: 0;
+}
+.readout-row dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--color-amber);
+  text-align: right;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1.3fr 1fr;
+    align-items: start;
+  }
+}
+
+/* ---- Experience ---- */
+.role-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.role-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--color-ink-raised);
+}
+.role-card:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Real logos come from the company's own brand assets, some on dark
+   backgrounds, some on light — an ivory "mount" behind every logo (real
+   or placeholder-pending) keeps all four presented uniformly regardless
+   of each file's native background, at one consistent size. */
+.role-logo {
+  width: 9.75rem;
+  height: 4.23rem;
+  flex-shrink: 0;
+  background: var(--color-ivory);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem;
+}
+.role-logo .logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.role-logo .photo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 1px dashed var(--color-slate);
+  font-size: 0.6rem;
+  padding: 0.35rem;
+}
+
+.role-content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.role-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.9rem;
+  row-gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+.role-title {
+  font-size: 1.2rem;
+  flex-basis: 100%;
+}
+.role-company {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--color-amber);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.role-dates {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--color-teal);
+  font-size: 0.85rem;
+}
+
+.role-bullets {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-width: 42rem;
+}
+
+/* Project gallery: browsable per-role, deliberately large — no corner
+   brackets here (see frontend/AGENTS.md restraint note), just a dashed
+   placeholder frame consistent with the rest of the site's photo slots. */
+.role-gallery {
+  position: relative;
+  width: 100%;
+}
+.gallery-viewport {
+  position: relative;
+  overflow: hidden;
+  border: 1px dashed var(--color-slate);
+  aspect-ratio: 4 / 3;
+}
+.gallery-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+.gallery-slide {
+  flex: 0 0 100%;
+  height: 100%;
+}
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-slate);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.gallery-prev,
+.gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.69rem;
+  height: 1.69rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  border: 1px solid var(--color-slate);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 0.83rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.gallery-prev { left: 0.45rem; }
+.gallery-next { right: 0.45rem; }
+.gallery-prev:disabled,
+.gallery-next:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.gallery-prev:hover:not(:disabled),
+.gallery-next:hover:not(:disabled) {
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+}
+
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.375rem;
+  margin-top: 0.5625rem;
+}
+.gallery-dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--color-slate);
+  background: transparent;
+  cursor: pointer;
+}
+.gallery-dot.is-active {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+}
+
+@media (min-width: 768px) {
+  .role-card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+  .role-content {
+    flex: 1 1 56%;
+  }
+  .role-gallery {
+    flex: 1 1 34%;
+    min-width: 19.5rem;
+  }
+}
+
+/* ---- Skills ---- */
+.skills-group {
+  margin-bottom: 2rem;
+}
+.skills-group:last-child {
+  margin-bottom: 0;
+}
+.skills-group-label {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+  margin: 0 0 0.9rem;
+}
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.skill-tag {
+  border: 1px solid var(--color-amber);
+  color: var(--color-amber);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.35rem 0.7rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---- Freelance intro (sits between hero and about, no heading) ---- */
+.freelance-intro {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1.5rem clamp(2rem, 6vw, 3.5rem);
+  text-align: center;
+  font-family: var(--font-display);
+  color: var(--color-teal);
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  line-height: 1.5;
+}
+
+/* ---- Contact ---- */
+.contact-lead {
+  color: var(--color-slate);
+  margin: 0 0 1rem;
+}
+.contact-email {
+  margin-bottom: 1.25rem;
+}

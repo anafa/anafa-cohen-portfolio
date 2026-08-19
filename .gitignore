@@ -1,0 +1,12 @@
+# Dev server runtime artifacts (see scripts/start.sh / start.ps1)
+scripts/.server.pid
+scripts/.server.log
+
+# Local copy of content/cv.json into frontend/, made by scripts/start.*
+# and by Netlify's build command — content/cv.json is the source of truth,
+# this is a generated artifact, never edit it directly.
+frontend/content/
+
+# OS junk
+.DS_Store
+Thumbs.db

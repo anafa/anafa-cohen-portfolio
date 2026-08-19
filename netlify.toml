@@ -1,0 +1,7 @@
+[build]
+  # Copies content/cv.json into frontend/content/cv.json so the published
+  # "frontend" directory is fully self-contained — main.js fetches
+  # "content/cv.json" relative to itself, and Netlify only serves files
+  # inside the publish directory.
+  command = "mkdir -p frontend/content && cp content/cv.json frontend/content/cv.json"
+  publish = "frontend"

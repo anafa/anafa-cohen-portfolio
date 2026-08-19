@@ -1,0 +1,234 @@
+{
+  "name": "Anafa Cohen",
+  "title": "Senior Computer Vision & Machine Learning Engineer",
+  "tagline": "Senior Computer Vision & Machine Learning Engineer",
+  "bio": "I'm a Senior Computer Vision & ML Engineer with 7 years of experience designing and deploying production-grade AI systems in agriculture, sports analytics, satellite imagery, and speech processing. I take ownership of end-to-end pipelines — from data strategy and modeling to benchmarking, optimization, and deployment. I bring a strong background in applied mathematics and physics.",
+  "highlights": {
+    "yearsExperience": "7",
+    "domains": [
+      "Deep Learning",
+      "Computer Vision",
+      "Audio Processing",
+      "Voice Recognition"
+    ]
+  },
+  "contact": {
+    "email": "anafa.anafa@gmail.com",
+    "location": "Neve Shalom, Israel"
+  },
+  "freelance": {
+    "available": true,
+    "statement": "Open to freelance and consulting work in computer vision and applied machine learning — model development, benchmarking, and getting production ML pipelines shipped, particularly for teams working with visual or sensor data (imagery, video, audio)."
+  },
+  "headshot": {
+    "photo": "my_profile_picture_2.jpeg",
+    "placeholder": false
+  },
+  "roles": [
+    {
+      "company": "Airis-Labs",
+      "title": "Senior Computer Vision & Deep Learning Engineer",
+      "startDate": "2024",
+      "endDate": "2025",
+      "description": [
+        "Designed and implemented a closed-vocabulary object detection module based on a Co-DETR pre-trained model, including full benchmarking and evaluation pipeline.",
+        "Built a comprehensive benchmarking framework to evaluate model performance and guide architectural and threshold-level decisions.",
+        "Enhanced an end-to-end License Plate Recognition (LPR) pipeline, including detection, OCR, and clustering, through systematic threshold tuning and ablation studies.",
+        "Improved speaker recognition capabilities by refining speaker diarization, generating representative embeddings, and enabling efficient large-scale embedding retrieval.",
+        "Worked closely with product and engineering teams to integrate models into production systems."
+      ],
+      "logo": {
+        "file": "airis_logo.png",
+        "placeholder": false
+      },
+      "gallery": []
+    },
+    {
+      "company": "Taranis",
+      "title": "Computer Vision & Deep Learning Engineer",
+      "startDate": "2023",
+      "endDate": "2024",
+      "description": [
+        "Developed object detection and image classification models for large-scale drone imagery in agricultural environments.",
+        "Led the development of an end-to-end pipeline for early-stage detection of field crops such as sugar beet and cotton.",
+        "Managed a proof-of-concept for wide-field imagery to improve weed detection, including data analysis, annotation guidelines, and evaluation of multiple annotation strategies.",
+        "Designed and trained CNN-based crop classification models, handling the full lifecycle from data preparation and training to production deployment."
+      ],
+      "logo": {
+        "file": "taranis_logo.png",
+        "placeholder": false
+      },
+      "gallery": [
+        {
+          "file": "taranis2.png",
+          "alt": "Drone image of crop rows with bounding boxes marking individually detected seedlings"
+        },
+        {
+          "file": "taranis3.png",
+          "alt": "Field-level heatmap overlay showing variability across a farm field boundary"
+        },
+        {
+          "file": "taranis4.png",
+          "alt": "Diagram of the YOLO-NAS object detection model architecture"
+        },
+        {
+          "file": "taranis5.png",
+          "alt": "Close-up drone image of early-stage crop seedlings with detection boxes marking each plant"
+        },
+        {
+          "file": "taranis6.png",
+          "alt": "Drone image of bare soil planting rows with detection boxes marking barely-emerged seedlings"
+        },
+        {
+          "file": "taranis7.png",
+          "alt": "Aerial view of mature crop rows with a detection box highlighting a weed patch"
+        }
+      ]
+    },
+    {
+      "company": "Pixellot",
+      "title": "Computer Vision & Deep Learning Engineer",
+      "startDate": "2022",
+      "endDate": "2022",
+      "description": [
+        "Developed real-time computer vision algorithms for automatic sports broadcast production.",
+        "Improved game state detection in American Football videos by analyzing failure modes of existing algorithms and incorporating motion-based and spatial metrics.",
+        "Conducted research and rapid prototyping in Python and deployed optimized solutions in C++ for real-time performance."
+      ],
+      "logo": {
+        "file": "pixellot_logo.png",
+        "placeholder": false
+      },
+      "gallery": [
+        {
+          "file": "pixellot2.png",
+          "alt": "Player and ball detection overlay on a soccer broadcast camera feed, with bounding boxes and framing calibration lines"
+        },
+        {
+          "file": "pixellot5.png",
+          "alt": "Split-screen comparison of player-tracking bounding boxes and game-state overlay across two broadcast camera frames"
+        },
+        {
+          "file": "pixellot6.png",
+          "alt": "Pixellot automatic broadcast production interface showing a tracked match view and camera control panel"
+        },
+        {
+          "file": "pixellot7.png",
+          "alt": "Panoramic match camera view above a top-down team formation and player-position analysis"
+        },
+        {
+          "file": "pixellot10.png",
+          "alt": "Close-up player-tracking debug view with bounding boxes, IDs, and velocity data on an American football field"
+        }
+      ]
+    },
+    {
+      "company": "PlanetWatchers",
+      "title": "Computer Vision & Deep Learning Engineer",
+      "startDate": "2019",
+      "endDate": "2021",
+      "description": [
+        "Developed deep learning and classical image processing algorithms for radar (SAR) and optical satellite imagery in agricultural applications.",
+        "Led semantic segmentation project for crop-type classification using satellite data.",
+        "Applied machine learning techniques, classical image processing, and statistical methods to satellite imagery for flood detection and crop-type classification."
+      ],
+      "logo": {
+        "file": "planetwatchers_logo.png",
+        "placeholder": false
+      },
+      "gallery": [
+        {
+          "file": "planetwatchers1.png",
+          "alt": "Aerial view of agricultural fields showing distinct crop parcels and access roads"
+        },
+        {
+          "file": "planetwatchers2.png",
+          "alt": "Aerial view of a harvester working a field, between green and golden crop rows"
+        },
+        {
+          "file": "planetwatchers3.png",
+          "alt": "Land-cover classification map over an agricultural region, color-coded by crop and land type"
+        },
+        {
+          "file": "planetwatchers4.png",
+          "alt": "Diagram of the U-Net encoder-decoder architecture used for satellite image classification"
+        },
+        {
+          "file": "planetwatchers5.png",
+          "alt": "Pipeline diagram for satellite data processing, feature optimization, and crop-type mapping using Sentinel-1 and Sentinel-2 imagery"
+        },
+        {
+          "file": "planetwatchers6.png",
+          "alt": "Comparison of sample satellite imagery, ground truth labels, and model predictions for crop-type segmentation"
+        },
+        {
+          "file": "planetwatchers7.png",
+          "alt": "Benchmark comparison of multiple segmentation model architectures (FCN, SegNet, TCN, SegFormer, ConvLSTM, U-Net) on crop-type classification"
+        }
+      ]
+    }
+  ],
+  "skills": {
+    "Computer Vision": [
+      "Object Detection",
+      "Semantic Segmentation",
+      "OCR",
+      "Tracking",
+      "Image Classification",
+      "SAR & Optical Satellite Image Processing"
+    ],
+    "Deep Learning": [
+      "CNNs",
+      "Transformers",
+      "PyTorch",
+      "TensorFlow",
+      "Keras"
+    ],
+    "Applied ML": [
+      "Benchmarking & Evaluation",
+      "Ablation Studies",
+      "Threshold Tuning",
+      "Error Analysis",
+      "Real-Time Algorithm Optimization"
+    ],
+    "Production ML": [
+      "Docker",
+      "CI/CD",
+      "Kubeflow",
+      "AWS",
+      "GCP"
+    ],
+    "Programming": [
+      "Python",
+      "C++",
+      "MATLAB"
+    ],
+    "Audio & Speech": [
+      "Speaker Recognition"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.Sc. in Physics and Electrooptics",
+      "institution": "Ben-Gurion University",
+      "dates": "2011-2015"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Machine and Deep Learning Bootcamp",
+      "institution": "Primrose",
+      "dates": "2019"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Hebrew",
+      "level": "Native"
+    },
+    {
+      "language": "English",
+      "level": "Fluent"
+    }
+  ]
+}
