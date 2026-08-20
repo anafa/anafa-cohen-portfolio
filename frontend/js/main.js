@@ -46,10 +46,6 @@ function renderAbout(cv) {
   }
 }
 
-function formatDateRange(startDate, endDate) {
-  return startDate === endDate ? startDate : `${startDate} – ${endDate}`;
-}
-
 function buildLogo(role) {
   const wrap = document.createElement("div");
   wrap.className = "role-logo";
@@ -254,12 +250,13 @@ function renderProjects(cv) {
     company.className = "role-company";
     company.textContent = role.company;
 
-    const dates = document.createElement("p");
-    dates.className = "role-dates";
-    dates.textContent = formatDateRange(role.startDate, role.endDate);
+    heading.append(company);
 
-    heading.append(company, dates);
-    header.append(buildLogo(role), heading);
+    const rule = document.createElement("span");
+    rule.className = "role-group-rule";
+    rule.setAttribute("aria-hidden", "true");
+
+    header.append(buildLogo(role), heading, rule);
 
     const grid = document.createElement("div");
     grid.className = "project-grid";

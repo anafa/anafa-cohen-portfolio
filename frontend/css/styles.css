@@ -305,17 +305,20 @@ section {
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  border-bottom: 1px solid var(--color-ink-raised);
-  padding-bottom: 0.75rem;
   margin-bottom: 1.5rem;
 }
 .role-group-heading {
-  display: flex;
+  flex: 0 0 auto;
+}
+
+/* Hairline continues the logo+company row across the rest of its width,
+   rather than sitting as a separate rule below the whole header — same
+   lighter hairline color as the Core Capabilities rows. */
+.role-group-rule {
   flex: 1 1 auto;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 0.75rem;
+  min-width: 2rem;
+  height: 1px;
+  background: rgba(139, 146, 150, 0.35);
 }
 
 /* Real logos come from the company's own brand assets, some on dark
@@ -356,14 +359,6 @@ section {
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-.role-dates {
-  margin: 0;
-  font-family: var(--font-mono);
-  color: var(--color-teal);
-  font-size: 0.85rem;
-  white-space: nowrap;
-}
-
 /* Project cards: flex-wrap row of individual write-ups per role, one card
    per named project rather than one gallery per company. Cards have a
    bounded width (don't stretch to fill the row) so a role with a single
@@ -551,28 +546,42 @@ body.modal-open {
 }
 
 /* ---- Skills ---- */
-/* Compact grid so all 5 groups sit on one row at desktop widths instead
-   of stacking vertically — was a single stacked column. */
+/* Row-based layout, same "stat row" pattern as .readout in About: one row
+   per category with a fixed-width label on the left and that category's
+   chips flowing in the remaining space, hairline rule between rows. Chips
+   wrap within their own row rather than ever overflowing into the next. */
 .skills-groups {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(9.375rem, 1fr));
-  gap: 1.5rem 1.25rem;
+  border-top: 1px solid rgba(139, 146, 150, 0.35);
+}
+.skills-group {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(139, 146, 150, 0.35);
 }
 .skills-group-label {
+  flex: 0 0 9.375rem;
+  width: 9.375rem;
+  padding-top: 0.3rem;
   font-family: var(--font-display);
   font-size: 0.78rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-slate);
-  margin: 0 0 0.625rem;
+  margin: 0;
 }
 .skills-tags {
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   gap: 0.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1 1 15rem;
+  min-width: 0;
 }
 .skill-tag {
   border: 1px solid var(--color-amber);
