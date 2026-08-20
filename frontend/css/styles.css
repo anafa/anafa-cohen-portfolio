@@ -288,12 +288,6 @@ section {
 }
 
 /* ---- Projects ---- */
-.projects-hint {
-  color: var(--color-slate);
-  font-size: 0.95rem;
-  margin: 0 0 2.5rem;
-}
-
 .role-groups {
   display: flex;
   flex-direction: column;
