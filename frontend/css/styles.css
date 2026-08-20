@@ -17,7 +17,10 @@
 
 /* ---- Reset ---- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* Reserve the scrollbar gutter permanently — otherwise toggling
+   `body.modal-open { overflow: hidden }` removes the scrollbar and the
+   whole page shifts sideways by its width when a modal opens/closes. */
+html { scroll-behavior: smooth; scrollbar-gutter: stable; }
 /* Several placeholder elements below use `display: flex` for centering,
    which (being an author rule) silently overrides the browser's default
    `[hidden] { display: none }` — so `element.hidden = true` in JS wasn't
@@ -362,12 +365,12 @@ section {
 }
 
 /* Project cards: flex-wrap row of individual write-ups per role, one card
-   per named project rather than one gallery per company. Closed cards
-   have a bounded width (don't stretch to fill the row) so a role with a
-   single project — Pixellot — reads as one normal-sized card, not one
-   oversized full-width card. Opening a card grows it to the full row
-   width to host the detail panel (wrapping any other cards in that row
-   onto new lines), then it shrinks back to its normal width on close. */
+   per named project rather than one gallery per company. Cards have a
+   bounded width (don't stretch to fill the row) so a role with a single
+   project — Pixellot — reads as one normal-sized card, not one oversized
+   full-width card. Clicking a card opens its write-up in a modal dialog
+   (see .project-modal below) rather than expanding inline, so the page
+   layout never shifts. */
 .project-grid {
   display: flex;
   flex-wrap: wrap;
@@ -379,10 +382,6 @@ section {
   flex-direction: column;
   flex: 0 1 18.75rem;
   max-width: 21.25rem;
-}
-.project-card.is-open {
-  flex: 1 1 100%;
-  max-width: none;
 }
 
 .project-toggle {
@@ -446,18 +445,50 @@ section {
   transition: color 0.15s ease-out;
 }
 
-/* Expanded write-up panel: a fixed CSS class toggle (.is-open), not the
-   `hidden` attribute — sidesteps any cascade-order dependency entirely by
-   construction (see frontend/AGENTS.md on the placeholder-visibility saga). */
-.project-expanded {
-  display: none;
-  margin-top: 1.25rem;
-  background: var(--color-ink-raised);
-  padding: clamp(1.25rem, 4vw, 1.6rem);
-  position: relative;
+/* Project write-up modal: fixed overlay + centered dialog, so opening a
+   project never shifts surrounding page layout (unlike the old inline
+   expand-in-place panel). Visibility uses the `hidden` attribute, backed
+   by the `[hidden] { display: none !important; }` reset rule up top. */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
 }
-.project-expanded.is-open {
-  display: block;
+.project-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.project-modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 44rem;
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  background: var(--color-ink-raised);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+body.modal-open {
+  overflow: hidden;
+}
+.project-modal-eyebrow {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display);
+  color: var(--color-amber);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.project-modal-content .project-image {
+  margin: 1rem 0 1.25rem;
+}
+.project-modal-content .project-title {
+  padding-right: 2.25rem;
 }
 .project-close {
   position: absolute;

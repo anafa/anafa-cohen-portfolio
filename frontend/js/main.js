@@ -70,22 +70,6 @@ function buildLogo(role) {
   return wrap;
 }
 
-// Closes every currently-open project panel. Called before opening a new
-// one, so only one project is expanded at a time (site-wide, not just
-// within a role) — matches the design's default single-open behavior.
-function closeAllProjectPanels() {
-  document.querySelectorAll(".project-expanded.is-open").forEach((panel) => {
-    panel.classList.remove("is-open");
-    panel.parentElement?.classList.remove("is-open");
-    const toggleBtn = panel.previousElementSibling;
-    if (toggleBtn) {
-      toggleBtn.setAttribute("aria-expanded", "false");
-      const label = toggleBtn.querySelector(".project-toggle-label");
-      if (label) label.textContent = "View project →";
-    }
-  });
-}
-
 function buildProjectImage(image, altFallback, className) {
   const wrap = document.createElement("div");
   wrap.className = className;
@@ -105,15 +89,15 @@ function buildProjectImage(image, altFallback, className) {
   return wrap;
 }
 
-function buildProjectCard(role, project, panelId) {
+function buildProjectCard(role, project) {
   const card = document.createElement("div");
   card.className = "project-card";
 
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "project-toggle";
-  btn.setAttribute("aria-expanded", "false");
-  btn.setAttribute("aria-controls", panelId);
+  btn.setAttribute("aria-haspopup", "dialog");
+  btn.setAttribute("aria-controls", "project-modal");
 
   const image = buildProjectImage(project.image, `${role.company} — project photo`, "project-image");
 
@@ -135,15 +119,25 @@ function buildProjectCard(role, project, panelId) {
   body.append(title, blurb, toggleLabel);
   btn.append(image, body);
 
-  const panel = document.createElement("div");
-  panel.className = "project-expanded";
-  panel.id = panelId;
+  btn.addEventListener("click", () => openProjectModal(role, project, btn));
 
-  const closeBtn = document.createElement("button");
-  closeBtn.type = "button";
-  closeBtn.className = "project-close";
-  closeBtn.setAttribute("aria-label", "Close");
-  closeBtn.textContent = "×";
+  card.append(btn);
+  return card;
+}
+
+function buildProjectModalContent(role, project) {
+  const frag = document.createDocumentFragment();
+
+  const eyebrow = document.createElement("p");
+  eyebrow.className = "project-modal-eyebrow";
+  eyebrow.textContent = role.company;
+
+  const title = document.createElement("h3");
+  title.id = "project-modal-title";
+  title.className = "project-title";
+  title.textContent = project.title;
+
+  const image = buildProjectImage(project.image, `${role.company} — project photo`, "project-image");
 
   const description = document.createElement("p");
   description.className = "project-description";
@@ -160,39 +154,93 @@ function buildProjectCard(role, project, panelId) {
   const moreImages = document.createElement("div");
   moreImages.className = "project-more-images";
   const galleryImages = project.gallery && project.gallery.length > 0 ? project.gallery : [null];
-  for (const image of galleryImages) {
-    moreImages.append(buildProjectImage(image, "More images coming soon", "project-more-image"));
+  for (const galleryImage of galleryImages) {
+    moreImages.append(buildProjectImage(galleryImage, "More images coming soon", "project-more-image"));
   }
 
-  panel.append(closeBtn, description, bullets, moreImages);
+  frag.append(eyebrow, title, image, description, bullets, moreImages);
+  return frag;
+}
 
-  const setOpen = (isOpen) => {
-    panel.classList.toggle("is-open", isOpen);
-    card.classList.toggle("is-open", isOpen);
-    btn.setAttribute("aria-expanded", String(isOpen));
-    toggleLabel.textContent = isOpen ? "Close ↑" : "View project →";
+// Single site-wide modal instance (one project open at a time), rather than
+// per-card inline panels — keeps the page layout stable when a card is
+// opened instead of pushing the rest of the content down.
+let modalTrigger = null;
+
+function getProjectModalEls() {
+  return {
+    modal: document.getElementById("project-modal"),
+    backdrop: document.querySelector("#project-modal .project-modal-backdrop"),
+    dialog: document.getElementById("project-modal-dialog"),
+    content: document.getElementById("project-modal-content"),
+    closeBtn: document.getElementById("project-modal-close"),
   };
+}
 
-  btn.addEventListener("click", () => {
-    const willOpen = !panel.classList.contains("is-open");
-    if (willOpen) {
-      closeAllProjectPanels();
-    }
-    setOpen(willOpen);
-  });
-  closeBtn.addEventListener("click", (event) => {
-    event.stopPropagation();
-    setOpen(false);
-  });
+function openProjectModal(role, project, triggerBtn) {
+  const { modal, content, closeBtn } = getProjectModalEls();
+  content.replaceChildren(buildProjectModalContent(role, project));
 
-  card.append(btn, panel);
-  return card;
+  modalTrigger = triggerBtn;
+  triggerBtn.setAttribute("aria-expanded", "true");
+
+  modal.hidden = false;
+  document.body.classList.add("modal-open");
+  document.addEventListener("keydown", onProjectModalKeydown);
+  closeBtn.focus();
+}
+
+function closeProjectModal() {
+  const { modal } = getProjectModalEls();
+  if (modal.hidden) return;
+
+  modal.hidden = true;
+  document.body.classList.remove("modal-open");
+  document.removeEventListener("keydown", onProjectModalKeydown);
+
+  if (modalTrigger) {
+    modalTrigger.setAttribute("aria-expanded", "false");
+    modalTrigger.focus();
+    modalTrigger = null;
+  }
+}
+
+function onProjectModalKeydown(event) {
+  if (event.key === "Escape") {
+    closeProjectModal();
+    return;
+  }
+  if (event.key !== "Tab") return;
+
+  // Basic focus trap: keep Tab cycling within the dialog while it's open.
+  const { dialog } = getProjectModalEls();
+  const focusable = dialog.querySelectorAll(
+    'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+  );
+  if (focusable.length === 0) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function initProjectModal() {
+  const { backdrop, closeBtn } = getProjectModalEls();
+  closeBtn.addEventListener("click", closeProjectModal);
+  backdrop.addEventListener("click", closeProjectModal);
 }
 
 function renderProjects(cv) {
   const container = document.getElementById("role-groups");
 
-  cv.roles.forEach((role, roleIndex) => {
+  cv.roles.forEach((role) => {
     const group = document.createElement("div");
     group.className = "role-group";
 
@@ -216,9 +264,8 @@ function renderProjects(cv) {
     const grid = document.createElement("div");
     grid.className = "project-grid";
 
-    role.projects.forEach((project, projectIndex) => {
-      const panelId = `project-panel-${roleIndex}-${projectIndex}`;
-      grid.append(buildProjectCard(role, project, panelId));
+    role.projects.forEach((project) => {
+      grid.append(buildProjectCard(role, project));
     });
 
     group.append(header, grid);
@@ -301,6 +348,7 @@ async function init() {
     renderFreelance(cv);
     renderContact(cv);
     initSectionHeadingReveal();
+    initProjectModal();
   } catch (err) {
     console.error(err);
     document.getElementById("main").innerHTML =
