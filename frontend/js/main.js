@@ -147,15 +147,35 @@ function buildProjectModalContent(role, project) {
     bullets.append(li);
   }
 
+  // Selected thumbnail, shown full-size (matching the top project image)
+  // above the thumbnail grid — empty/hidden until a thumbnail is clicked.
+  const selectedImage = document.createElement("div");
+  selectedImage.className = "project-selected-image";
+  selectedImage.hidden = true;
+
   const moreImages = document.createElement("div");
   moreImages.className = "project-more-images";
   const galleryImages = project.gallery && project.gallery.length > 0 ? project.gallery : [null];
   for (const galleryImage of galleryImages) {
-    moreImages.append(buildProjectImage(galleryImage, "More images coming soon", "project-more-image"));
+    moreImages.append(buildProjectThumbnail(galleryImage, "More images coming soon", selectedImage));
   }
 
-  frag.append(eyebrow, title, image, description, bullets, moreImages);
+  frag.append(eyebrow, title, image, description, bullets, selectedImage, moreImages);
   return frag;
+}
+
+function buildProjectThumbnail(image, altFallback, selectedImage) {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "project-more-image-btn";
+  btn.append(buildProjectImage(image, altFallback, "project-more-image"));
+
+  btn.addEventListener("click", () => {
+    selectedImage.replaceChildren(buildProjectImage(image, altFallback, "project-image"));
+    selectedImage.hidden = false;
+  });
+
+  return btn;
 }
 
 // Single site-wide modal instance (one project open at a time), rather than

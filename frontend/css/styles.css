@@ -545,6 +545,22 @@ body.modal-open {
   letter-spacing: 0.02em;
 }
 
+/* Thumbnail button: clicking it shows that image full-size in
+   .project-selected-image, above the thumbnail grid. */
+.project-more-image-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.project-more-image-btn:hover .project-more-image,
+.project-more-image-btn:focus-visible .project-more-image {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 2px;
+}
+
 /* ---- Skills ---- */
 /* Row-based layout, same "stat row" pattern as .readout in About: one row
    per category with a fixed-width label on the left and that category's
