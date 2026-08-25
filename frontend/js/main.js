@@ -85,6 +85,42 @@ function buildProjectImage(image, altFallback, className) {
   return wrap;
 }
 
+// Gallery thumbnails, and the enlarged view shown when a thumbnail is
+// clicked, use a fixed aspect ratio box — but source images come in
+// whatever ratio they were captured/exported at. Rather than crop (loses
+// content) or letterbox with a flat color, we fill the frame with a
+// softly blurred, darkened copy of the same image behind a sharp
+// `contain`-fit copy in front, so the enlarged view keeps the same
+// framing/padding treatment as the thumbnail it came from.
+function buildBlurPaddedImage(image, altFallback, className) {
+  const wrap = document.createElement("div");
+  wrap.className = className;
+
+  if (image && !image.placeholder && image.file) {
+    const src = `images/${image.file}`;
+
+    const bg = document.createElement("img");
+    bg.className = "gallery-blur-bg";
+    bg.src = src;
+    bg.alt = "";
+    bg.setAttribute("aria-hidden", "true");
+
+    const fg = document.createElement("img");
+    fg.className = "gallery-blur-fg";
+    fg.src = src;
+    fg.alt = image.alt || altFallback;
+
+    wrap.append(bg, fg);
+  } else {
+    const placeholder = document.createElement("div");
+    placeholder.className = "photo-placeholder";
+    placeholder.innerHTML = `<span>${altFallback}</span>`;
+    wrap.append(placeholder);
+  }
+
+  return wrap;
+}
+
 function buildProjectCard(role, project) {
   const card = document.createElement("div");
   card.className = "project-card";
@@ -133,7 +169,14 @@ function buildProjectModalContent(role, project) {
   title.className = "project-title";
   title.textContent = project.title;
 
-  const image = buildProjectImage(project.image, `${role.company} — project photo`, "project-image");
+  // Usually the same as the card image, but a project can set `modalImage`
+  // to show a different image as the modal's main photo (e.g. when the
+  // card image is meant to be a main-page-only teaser).
+  const image = buildProjectImage(
+    project.modalImage || project.image,
+    `${role.company} — project photo`,
+    "project-image"
+  );
 
   const description = document.createElement("p");
   description.className = "project-description";
@@ -168,10 +211,10 @@ function buildProjectThumbnail(image, altFallback, selectedImage) {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "project-more-image-btn";
-  btn.append(buildProjectImage(image, altFallback, "project-more-image"));
+  btn.append(buildBlurPaddedImage(image, altFallback, "project-more-image"));
 
   btn.addEventListener("click", () => {
-    selectedImage.replaceChildren(buildProjectImage(image, altFallback, "project-image"));
+    selectedImage.replaceChildren(buildBlurPaddedImage(image, altFallback, "project-image"));
     selectedImage.hidden = false;
   });
 

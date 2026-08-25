@@ -320,15 +320,15 @@ section {
    or placeholder-pending) keeps all four presented uniformly regardless
    of each file's native background, at one consistent size. */
 .role-logo {
-  width: 9.75rem;
-  height: 4.23rem;
+  width: 4.875rem;
+  height: 2.115rem;
   flex-shrink: 0;
   background: var(--color-ivory);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.65rem;
+  padding: 0.15rem;
 }
 .role-logo .logo-img {
   width: 100%;
@@ -392,6 +392,7 @@ section {
 }
 
 .project-image {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
@@ -516,13 +517,39 @@ body.modal-open {
   gap: 0.75rem;
 }
 .project-more-image {
+  position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  background: var(--color-ink-raised);
 }
-.project-more-image img {
+/* Gallery thumbnails, and the enlarged view shown when one is clicked
+   (.project-selected-image > .project-image), use a fixed aspect ratio
+   box, but source images come in whatever ratio they were captured/
+   exported at. Rather than crop (loses content) or letterbox with a flat
+   color (looks like an error state), we fill the frame with a softly
+   blurred, darkened copy of the same image behind a sharp `contain`-fit
+   copy in front — the same "ambient blur" treatment used by many photo
+   apps for mismatched aspect ratios. Selectors are scoped per-container
+   (rather than a bare `.gallery-blur-bg`) so they outrank the plain
+   `.project-image img` rule used for the card/modal-header image. */
+.project-more-image .gallery-blur-bg,
+.project-image .gallery-blur-bg {
+  position: absolute;
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  object-fit: cover;
+  filter: blur(16px) brightness(0.55) saturate(1.15);
+  transform: scale(1.05);
+}
+.project-more-image .gallery-blur-fg,
+.project-image .gallery-blur-fg {
+  position: relative;
+  z-index: 1;
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .project-more-image .photo-placeholder {
   width: 100%;

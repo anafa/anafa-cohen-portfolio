@@ -47,11 +47,42 @@
             "Benchmarking framework used to guide architectural and threshold-level decisions"
           ],
           "image": {
-            "file": null,
-            "alt": null,
-            "placeholder": true
+            "file": "airis_objdet1.jpg",
+            "alt": "Street-scene object detection with bounding boxes labeling cars, a truck, a person, and traffic lights",
+            "placeholder": false
           },
-          "gallery": []
+          "gallery": [
+            {
+              "file": "airis_objdet2.jpg",
+              "alt": "Nighttime street scene with detection boxes labeling a bus, pedestrians, and a traffic light",
+              "placeholder": false
+            },
+            {
+              "file": "airis_objdet3.jpg",
+              "alt": "Daytime street scene with detection boxes labeling cars and pedestrians",
+              "placeholder": false
+            },
+            {
+              "file": "airis_objdet4.png",
+              "alt": "Diagram of the Co-DETR object detection model architecture",
+              "placeholder": false
+            },
+            {
+              "file": "airis_objdet5.png",
+              "alt": "Precision-recall curves for the Co-DETR model across target classes",
+              "placeholder": false
+            },
+            {
+              "file": "airis_objdet6.png",
+              "alt": "Bar chart comparing mAP and latency across object detection architectures",
+              "placeholder": false
+            },
+            {
+              "file": "airis_objdet7.png",
+              "alt": "Precision, recall, and F1 score plotted against confidence threshold",
+              "placeholder": false
+            }
+          ]
         },
         {
           "title": "License Plate Recognition Pipeline",
@@ -63,11 +94,22 @@
             "Ablation studies to isolate what improved performance"
           ],
           "image": {
-            "file": null,
-            "alt": null,
-            "placeholder": true
+            "file": "airis_lpr1.png",
+            "alt": "Car with its license plate detected and read via OCR",
+            "placeholder": false
           },
-          "gallery": []
+          "gallery": [
+            {
+              "file": "airis_lpr2.jpg",
+              "alt": "SUV with two overlapping license plates detected and read via OCR",
+              "placeholder": false
+            },
+            {
+              "file": "airis_lpr3.png",
+              "alt": "Diagram of the license plate recognition pipeline: video sampling, detection, OCR, filtering, and clustering",
+              "placeholder": false
+            }
+          ]
         },
         {
           "title": "Speaker Recognition & Diarization",
@@ -107,24 +149,29 @@
             "Built for large-scale drone imagery"
           ],
           "image": {
-            "file": "taranis2.png",
+            "file": "taranis_standcount1.png",
             "alt": "Drone image of crop rows with bounding boxes marking individually detected seedlings",
+            "placeholder": false
+          },
+          "modalImage": {
+            "file": "taranis_standcount2.png",
+            "alt": "Close-up drone image of early-stage crop seedlings with detection boxes marking each plant",
             "placeholder": false
           },
           "gallery": [
             {
-              "file": "taranis4.png",
-              "alt": "Diagram of the YOLO-NAS object detection model architecture",
-              "placeholder": false
-            },
-            {
-              "file": "taranis5.png",
-              "alt": "Close-up drone image of early-stage crop seedlings with detection boxes marking each plant",
-              "placeholder": false
-            },
-            {
-              "file": "taranis6.png",
+              "file": "taranis_standcount3.png",
               "alt": "Drone image of bare soil planting rows with detection boxes marking barely-emerged seedlings",
+              "placeholder": false
+            },
+            {
+              "file": "taranis_standcount4.png",
+              "alt": "Drone image of sparse, scattered seedling detections across bare soil",
+              "placeholder": false
+            },
+            {
+              "file": "taranis_standcount5.png",
+              "alt": "Diagram of the YOLO-NAS object detection model architecture",
               "placeholder": false
             }
           ]
@@ -139,33 +186,17 @@
             "Evaluated multiple annotation strategies"
           ],
           "image": {
-            "file": "taranis7.png",
+            "file": "taranis_infestation1.png",
             "alt": "Aerial view of mature crop rows with a detection box highlighting a weed patch",
             "placeholder": false
           },
           "gallery": [
             {
-              "file": "taranis3.png",
+              "file": "taranis_infestation2.png",
               "alt": "Field-level heatmap overlay showing variability across a farm field boundary",
               "placeholder": false
             }
           ]
-        },
-        {
-          "title": "Crop Classification",
-          "blurb": "CNN-based crop classification models taken from data preparation through to production deployment.",
-          "description": "Designed and trained CNN-based crop classification models for large-scale drone imagery, handling the full lifecycle from data preparation and training to production deployment.",
-          "bullets": [
-            "CNN-based crop classification models",
-            "Full lifecycle: data preparation, training, deployment",
-            "Built for large-scale drone imagery"
-          ],
-          "image": {
-            "file": null,
-            "alt": null,
-            "placeholder": true
-          },
-          "gallery": []
         }
       ]
     },
@@ -189,29 +220,24 @@
             "Prototyped in Python, deployed in C++ for real-time performance"
           ],
           "image": {
-            "file": "pixellot10.png",
-            "alt": "Close-up player-tracking debug view with bounding boxes, IDs, and velocity data on an American football field",
+            "file": "pixellot1.png",
+            "alt": "Split-screen comparison of player-tracking bounding boxes and game-state overlay across two broadcast camera frames",
             "placeholder": false
           },
           "gallery": [
             {
               "file": "pixellot2.png",
-              "alt": "Player and ball detection overlay on a soccer broadcast camera feed, with bounding boxes and framing calibration lines",
-              "placeholder": false
-            },
-            {
-              "file": "pixellot5.png",
-              "alt": "Split-screen comparison of player-tracking bounding boxes and game-state overlay across two broadcast camera frames",
-              "placeholder": false
-            },
-            {
-              "file": "pixellot6.png",
-              "alt": "Pixellot automatic broadcast production interface showing a tracked match view and camera control panel",
-              "placeholder": false
-            },
-            {
-              "file": "pixellot7.png",
               "alt": "Panoramic match camera view above a top-down team formation and player-position analysis",
+              "placeholder": false
+            },
+            {
+              "file": "pixellot3.png",
+              "alt": "Broadcast production interface showing the live match feed and playback controls",
+              "placeholder": false
+            },
+            {
+              "file": "pixellot4.png",
+              "alt": "Panoramic broadcast camera feed with framing calibration lines and player-tracking overlays",
               "placeholder": false
             }
           ]
@@ -255,40 +281,25 @@
             },
             {
               "file": "planetwatchers4.png",
-              "alt": "Diagram of the U-Net encoder-decoder architecture used for satellite image classification",
-              "placeholder": false
-            },
-            {
-              "file": "planetwatchers5.png",
-              "alt": "Pipeline diagram for satellite data processing, feature optimization, and crop-type mapping using Sentinel-1 and Sentinel-2 imagery",
-              "placeholder": false
-            },
-            {
-              "file": "planetwatchers6.png",
               "alt": "Comparison of sample satellite imagery, ground truth labels, and model predictions for crop-type segmentation",
               "placeholder": false
             },
             {
-              "file": "planetwatchers7.png",
+              "file": "planetwatchers5.png",
               "alt": "Benchmark comparison of multiple segmentation model architectures (FCN, SegNet, TCN, SegFormer, ConvLSTM, U-Net) on crop-type classification",
+              "placeholder": false
+            },
+            {
+              "file": "planetwatchers6.png",
+              "alt": "Diagram of the U-Net encoder-decoder architecture used for satellite image classification",
+              "placeholder": false
+            },
+            {
+              "file": "planetwatchers7.png",
+              "alt": "Pipeline diagram for satellite data processing, feature optimization, and crop-type mapping using Sentinel-1 and Sentinel-2 imagery",
               "placeholder": false
             }
           ]
-        },
-        {
-          "title": "Flood Detection from Satellite Imagery",
-          "blurb": "Flood detection from satellite imagery using a combination of ML, classical image processing, and statistical methods.",
-          "description": "Applied machine learning techniques, classical image processing, and statistical methods to satellite imagery for flood detection.",
-          "bullets": [
-            "Combined ML, classical image processing, and statistical methods",
-            "Applied to satellite imagery for flood detection"
-          ],
-          "image": {
-            "file": null,
-            "alt": null,
-            "placeholder": true
-          },
-          "gallery": []
         }
       ]
     }
