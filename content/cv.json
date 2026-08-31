@@ -112,20 +112,32 @@
           ]
         },
         {
-          "title": "Speaker Recognition & Diarization",
-          "blurb": "Improved speaker recognition through refined diarization and efficient large-scale embedding retrieval.",
-          "description": "Improved speaker recognition capabilities by refining speaker diarization, generating representative embeddings, and enabling efficient large-scale embedding retrieval.",
+          "title": "Speaker Recognition & Cross-Video Retrieval",
+          "blurb": "A speaker recognition and retrieval pipeline for finding the same speakers across large video datasets",
+          "description": "Designed an evaluation framework for a speaker recognition system aimed at cross-video speaker retrieval.",
           "bullets": [
-            "Refined speaker diarization",
-            "Generated representative speaker embeddings",
-            "Enabled efficient retrieval across large-scale embedding sets"
+            "Investigated the pipeline from video/audio processing through speaker diarization, embedding generation, vector indexing, and retrieval",
+            "Designed and built an initial benchmark to establish reliable ground truth for evaluation and validated the end-to-end retrieval flow.",
+            "Guided and validated a team of annotators in the speaker-matching annotation process to ensure consistent and reliable ground truth",
+            "Defined a roadmap for larger-scale evaluation, including retrieval metrics, similarity thresholds, false-positive/false-negative analysis, and robustness to challenging audio conditions"
           ],
           "image": {
-            "file": null,
-            "alt": null,
-            "placeholder": true
+            "file": "airis_speakers1.png",
+            "alt": "Video annotation tool showing a speaker on camera alongside two aligned audio waveform tracks",
+            "placeholder": false
           },
-          "gallery": []
+          "gallery": [
+            {
+              "file": "airis_speakers2.png",
+              "alt": "Pipeline diagram: video dataset, speaker diarization, speaker embeddings, speaker representation, vector index, and cross-video retrieval",
+              "placeholder": false
+            },
+            {
+              "file": "airis_speakers3.png",
+              "alt": "Diarization timeline showing audio waveforms and video thumbnails segmented and labeled by speaker",
+              "placeholder": false
+            }
+          ]
         }
       ]
     },
