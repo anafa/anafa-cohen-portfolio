@@ -5,6 +5,7 @@
   --color-ivory: #EFEAE0;
   --color-amber: #E8A33D;
   --color-teal: #4F9D8C;
+  --color-teal-light: #82C4B4;
   --color-slate: #8B9296;
 
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -633,14 +634,23 @@ body.modal-open {
 
 /* ---- Freelance intro (sits between hero and about, no heading) ---- */
 .freelance-intro {
-  max-width: 44rem;
+  max-width: 50rem;
   margin: 0 auto;
-  padding: 0 1.5rem clamp(2rem, 6vw, 3.5rem);
+  padding: 0 1.5rem clamp(2.5rem, 7vw, 4rem);
   text-align: center;
   font-family: var(--font-display);
-  color: var(--color-teal);
-  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
-  line-height: 1.5;
+  color: var(--color-teal-light);
+  font-size: clamp(1.25rem, 2.7vw, 1.6rem);
+  font-weight: 500;
+  line-height: 1.45;
+}
+.freelance-intro::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  margin: 0 auto 1.5rem;
+  background: rgba(79, 157, 140, 0.4);
 }
 .freelance-intro p {
   margin: 0;
