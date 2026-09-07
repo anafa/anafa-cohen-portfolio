@@ -90,11 +90,13 @@
         {
           "title": "License Plate Recognition Pipeline",
           "blurb": "End-to-end license plate detection, OCR, and clustering pipeline, improved through systematic threshold tuning and ablation studies.",
-          "description": "Enhanced an end-to-end License Plate Recognition (LPR) pipeline — covering detection, OCR, and clustering — through systematic threshold tuning and ablation studies.",
+          "description": "Enhanced an end-to-end License Plate Recognition (LPR) pipeline — covering detection, OCR, and clustering — through systematic benchmarking, threshold tuning, and ablation studies.",
           "bullets": [
             "End-to-end pipeline: detection, OCR, and clustering stages",
-            "Systematic threshold tuning across the pipeline",
-            "Ablation studies to isolate what improved performance"
+            "Developed benchmarking and KPI evaluation tools for both internal AI development and customer-facing performance evaluation",
+            "Identified pipeline weaknesses and performance bottlenecks through data-driven analysis",
+            "Improved system performance through systematic threshold tuning and targeted pipeline optimization",
+            "Designed ablation studies to isolate the impact of individual components and improvements"
           ],
           "image": {
             "file": "airis_lpr1.png",
