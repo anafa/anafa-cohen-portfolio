@@ -159,11 +159,12 @@
         {
           "title": "Crop Detection",
           "blurb": "End-to-end pipeline for early-stage detection of field crops like sugar beet and cotton from drone imagery.",
-          "description": "Developed object detection models for large-scale drone imagery in agricultural environments, and led the development of an end-to-end pipeline for early-stage detection of field crops such as sugar beet and cotton.",
+          "description": "Developed an end-to-end computer vision pipeline for early-stage crop detection and stand counting in large-scale, high-resolution drone imagery of sugar beet and cotton fields.",
           "bullets": [
-            "End-to-end pipeline for early-stage crop detection",
-            "Target crops included sugar beet and cotton",
-            "Built for large-scale drone imagery"
+            "Owned the full development process — from data analysis and processing, annotation handling, and model development to integration into the company's production system",
+            "Built the crop detection module using YOLO-NAS, and integrated row detection to improve counting accuracy and suppress detections between crop rows",
+            "Developed automated processing for converting point annotations into bounding boxes and preparing training data",
+            "Evaluated and optimized the system using Precision–Recall analysis and detection threshold tuning"
           ],
           "image": {
             "file": "taranis_standcount1.png",
