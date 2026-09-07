@@ -346,42 +346,30 @@
     }
   ],
   "skills": {
-    "Computer Vision": [
-      "Object Detection",
-      "Semantic Segmentation",
-      "OCR",
-      "Tracking",
-      "Image Classification",
-      "SAR & Optical Satellite Image Processing"
-    ],
-    "Deep Learning": [
-      "CNNs",
-      "Transformers",
-      "PyTorch",
-      "TensorFlow",
-      "Keras"
-    ],
-    "Applied ML": [
-      "Benchmarking & Evaluation",
-      "Ablation Studies",
-      "Threshold Tuning",
-      "Error Analysis",
-      "Real-Time Algorithm Optimization"
-    ],
-    "Production ML": [
-      "Docker",
-      "CI/CD",
-      "Kubeflow",
-      "AWS",
-      "GCP"
-    ],
     "Programming": [
       "Python",
       "C++",
       "MATLAB"
     ],
-    "Audio & Speech": [
-      "Speaker Recognition"
+    "ML & AI": [
+      "PyTorch",
+      "TensorFlow",
+      "Keras",
+      "OpenCV"
+    ],
+    "Cloud & Infrastructure": [
+      "AWS",
+      "GCP",
+      "Docker",
+      "CI/CD",
+      "Kubeflow"
+    ],
+    "Development": [
+      "Git",
+      "Linux",
+      "VS Code",
+      "Cursor",
+      "Claude Code"
     ]
   },
   "education": [
