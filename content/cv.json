@@ -9,10 +9,11 @@
   "highlights": {
     "yearsExperience": "7",
     "domains": [
-      "Deep Learning",
       "Computer Vision",
-      "Audio Processing",
-      "Voice Recognition"
+      "Deep Learning",
+      "Machine Learning",
+      "Audio & Speech",
+      "Model Evaluation"
     ]
   },
   "contact": {
@@ -25,6 +26,28 @@
       "I turn raw, real-world data into reliable, deployable AI systems."
     ]
   },
+  "whatIDo": [
+    {
+      "title": "AI & Algorithm Development",
+      "description": "Develop and improve ML/DL algorithms for real-world problems."
+    },
+    {
+      "title": "Computer Vision",
+      "description": "Object detection, segmentation, classification, OCR, image analysis, and video."
+    },
+    {
+      "title": "Benchmarking & Evaluation",
+      "description": "Design benchmarks, evaluation frameworks, KPIs, and systematic experiments."
+    },
+    {
+      "title": "AI Research & Prototyping",
+      "description": "Explore approaches, test feasibility, and turn ideas into working prototypes."
+    },
+    {
+      "title": "End-to-End AI Pipelines",
+      "description": "Take projects from raw data and experimentation through model development and production."
+    }
+  ],
   "headshot": {
     "photo": "my_profile_picture_2.jpeg",
     "placeholder": false
@@ -274,13 +297,13 @@
       "projects": [
         {
           "title": "Crop-Type Semantic Segmentation",
-          "blurb": "Semantic segmentation model for crop-type classification using SAR and optical satellite imagery.",
-          "description": "Led a semantic segmentation project for crop-type classification using satellite data, applying deep learning and classical image processing techniques to both radar (SAR) and optical satellite imagery in agricultural applications.",
-          "bullets": [
-            "Semantic segmentation for crop-type classification",
-            "Combined deep learning with classical image processing",
-            "Worked across both SAR and optical satellite imagery"
+          "blurb": "Semantic segmentation model for crop-type classification using satellite SAR (radar) imagery.",
+          "description": [
+            "Developed a deep learning–based semantic segmentation system for crop-type classification using satellite SAR (radar) imagery, enabling crop mapping without relying on optical imagery.",
+            "The system uses temporal Sentinel-1 radar data (VV/VH) to distinguish crop types such as corn and soybean, with a U-Net / ConvLSTM architecture for spatial and temporal modeling.",
+            "The project included the full AI pipeline — from satellite data preparation and handling missing observations to model development, training, evaluation, and optimization."
           ],
+          "bullets": [],
           "image": {
             "file": "planetwatchers1.png",
             "alt": "Aerial view of agricultural fields showing distinct crop parcels and access roads",

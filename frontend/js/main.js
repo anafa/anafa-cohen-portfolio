@@ -22,6 +22,19 @@ function renderHero(cv) {
   }
 }
 
+function renderWhatIDo(cv) {
+  const list = document.getElementById("what-i-do-list");
+  for (const item of cv.whatIDo) {
+    const li = document.createElement("li");
+
+    const title = document.createElement("strong");
+    title.textContent = item.title;
+
+    li.append(title, ` — ${item.description}`);
+    list.append(li);
+  }
+}
+
 function renderAbout(cv) {
   const bioContainer = document.getElementById("about-bio");
   for (const paragraph of cv.bio) {
@@ -183,13 +196,20 @@ function buildProjectModalContent(role, project) {
     "project-image"
   );
 
-  const description = document.createElement("p");
+  const description = document.createElement("div");
   description.className = "project-description";
-  description.textContent = project.description;
+  const descriptionParagraphs = Array.isArray(project.description)
+    ? project.description
+    : [project.description];
+  for (const paragraph of descriptionParagraphs) {
+    const p = document.createElement("p");
+    p.textContent = paragraph;
+    description.append(p);
+  }
 
   const bullets = document.createElement("ul");
   bullets.className = "project-bullets";
-  for (const point of project.bullets) {
+  for (const point of project.bullets || []) {
     const li = document.createElement("li");
     li.textContent = point;
     bullets.append(li);
@@ -208,7 +228,11 @@ function buildProjectModalContent(role, project) {
     moreImages.append(buildProjectThumbnail(galleryImage, "More images coming soon", selectedImage));
   }
 
-  frag.append(eyebrow, title, image, description, bullets, selectedImage, moreImages);
+  frag.append(eyebrow, title, image, description);
+  if (project.bullets && project.bullets.length > 0) {
+    frag.append(bullets);
+  }
+  frag.append(selectedImage, moreImages);
   return frag;
 }
 
@@ -407,6 +431,7 @@ async function init() {
   try {
     const cv = await loadContent();
     renderHero(cv);
+    renderWhatIDo(cv);
     renderAbout(cv);
     renderProjects(cv);
     renderSkills(cv);

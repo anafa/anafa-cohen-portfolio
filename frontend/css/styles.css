@@ -236,6 +236,37 @@ section {
   .hero-text { max-width: 32rem; }
 }
 
+/* ---- What I Do ---- */
+.what-i-do-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 46rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.what-i-do-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+.what-i-do-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--color-amber);
+}
+.what-i-do-list strong {
+  font-family: var(--font-display);
+  color: var(--color-amber);
+  font-weight: 700;
+}
+
 /* ---- About ---- */
 .section-heading {
   position: relative;
@@ -506,6 +537,9 @@ body.modal-open {
 .project-description {
   max-width: 44rem;
   margin: 0 0 1rem;
+}
+.project-description p + p {
+  margin-top: 0.75rem;
 }
 .project-bullets {
   margin: 0 0 1.375rem;
