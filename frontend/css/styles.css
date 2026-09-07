@@ -252,6 +252,9 @@ section {
   font-size: 1.15rem;
   max-width: 42rem;
 }
+.bio p + p {
+  margin-top: 1rem;
+}
 
 .readout {
   margin: 0;
@@ -284,7 +287,7 @@ section {
 @media (min-width: 768px) {
   .about-grid {
     grid-template-columns: 1.3fr 1fr;
-    align-items: start;
+    align-items: center;
   }
 }
 

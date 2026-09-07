@@ -2,7 +2,10 @@
   "name": "Anafa Cohen",
   "title": "Applied AI Researcher | Computer Vision & Deep Learning Engineer",
   "tagline": "Applied AI Researcher | Computer Vision & Deep Learning Engineer",
-  "bio": "With 7+ years of experience in computer vision and applied machine learning, I work with imagery, video, audio, and other sensor data. I can help with model development, computer vision pipelines, algorithm research, and turning challenging data into working AI solutions.",
+  "bio": [
+    "With 7+ years of experience developing AI systems, specializing in computer vision and applied machine learning, I develop AI solutions, algorithms, and end-to-end pipelines for challenging real-world problems across imagery, video, audio, and other sensor data.",
+    "I take AI projects through the full development cycle — from research and experimentation to model development, benchmarking, evaluation, and production-ready systems."
+  ],
   "highlights": {
     "yearsExperience": "7",
     "domains": [
@@ -19,7 +22,7 @@
   "freelance": {
     "available": true,
     "statement": [
-      "I turn messy, real-world data into working AI solutions."
+      "I turn raw, real-world data into reliable, deployable AI systems."
     ]
   },
   "headshot": {

@@ -23,7 +23,12 @@ function renderHero(cv) {
 }
 
 function renderAbout(cv) {
-  document.getElementById("about-bio").textContent = cv.bio;
+  const bioContainer = document.getElementById("about-bio");
+  for (const paragraph of cv.bio) {
+    const p = document.createElement("p");
+    p.textContent = paragraph;
+    bioContainer.append(p);
+  }
 
   const rows = [
     { label: "Education", value: cv.education[0].degree },
